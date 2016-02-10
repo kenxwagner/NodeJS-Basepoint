@@ -1,6 +1,6 @@
 //This is practice by creating a simple way to look at a user's badge count and JavaScript points 
 //Solve it by using Node.js to connect to Treehouse's API to get profile information to print out
-var https = require("https");
+var http = require("http");
 
 //This is for printing out the message
 function printMessage(username, badgeCount, points) {
@@ -14,7 +14,7 @@ function printError(error){
 
 function get(username) {
   //Connect to the API URL
-  var request = https.get("https://teamtreehouse.com/" + username + ".json", function(response) {
+  var request = http.get("http://teamtreehouse.com/" + username + ".json", function(response) {
     var body = "";
       
     //Here the app will read the data
@@ -27,17 +27,18 @@ function get(username) {
      //Here the app will parse (or analyze) the data
       var profile = JSON.parse(body);
      //Here the app will now print the data in an organized format.
-      printMessage(username, profile.badges.length, profile.points.JavaScript)
+      printMessage(username, profile.badges.length, profile.points.JavaScript);
       } catch(error) {
     //This is for a parse error
         printError(error);
       }
       } else {
         //Status Code error goes here
-        printError({message: "There seems to be a problem with retrieving the profile for " + username + ". ("+ https.STATUS_CODES[response.statusCode] +")"});
+        printError({message: "There seems to be a problem with retrieving the profile for " + username + ". ("+ http.STATUS_CODES[response.statusCode] +")"});
      }
    });
 });
+  
   //If there is a Connection Error
   request.on("error",printError);
 }
