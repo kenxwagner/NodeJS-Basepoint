@@ -17,8 +17,10 @@ var request = https.get("https://teamtreehouse.com/" + username + ".json", funct
       body += chunk;
    });
   response.on('end', function(){
-    console.log(body);
-    console.log(typeof body);
+    var profile = JSON.parse(body);
+    printMessage(username, profile.badges.length, profile.points.JavaScript)
+    //console.dir(profile);
+    
   });
   //Here the app will parse (or analyze) the data
   //Here the app will now print the data in an organized format.
