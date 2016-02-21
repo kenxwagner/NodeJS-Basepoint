@@ -1,3 +1,4 @@
 # NodeJS-Basepoint
 NodeJS time
-Practice using and coding NodeJS
+
+The intent is practice and growth of knowledge.
